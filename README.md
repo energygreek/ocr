@@ -1,6 +1,7 @@
-# ocr_tool
+# ocr
 a selectable/copyable OCR tool based on vue and flask
 
+![ocr](ocr.png)
 ## front setup
 ```sh
 npm install
