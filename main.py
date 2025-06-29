@@ -1,7 +1,7 @@
 from flask import Flask, send_from_directory, jsonify, request
 import os
 import pytesseract
-from PIL import Image
+from PIL import Image, ImageOps
 from flask_cors import CORS
 
 
@@ -31,6 +31,16 @@ def ocr():
                 'height': data['height'][i]
             })
     return jsonify(results)
+
+
+@app.route('/draw', methods=['POST'])
+def draw():
+    file = request.files['image']
+    image = Image.open(file).convert('RGB')
+    #image.save('img.jpg', 'JPEG')
+
+    text = pytesseract.image_to_string(image, lang='eng')  # use 'eng' if English
+    return jsonify({'text': text.strip()})
 
 
 # Catch-all for SPA routes

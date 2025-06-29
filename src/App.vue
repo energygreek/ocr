@@ -1,72 +1,34 @@
 <template>
-  <div class="ocr-container">
-    <img :src="imageUrl" ref="img" @load="onImageLoad" />
-    <div
-      v-for="(box, i) in boxes"
-      :key="i"
-      class="ocr-box"
-      :style="{
-        top: box.top * scaleY + 'px',
-        left: box.left * scaleX + 'px',
-        width: box.width * scaleX + 'px',
-        height: box.height * scaleY + 'px',
-      }"
-    >
-      {{ box.text }}
-    </div>
-    <input type="file" @change="uploadImage" />
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/ocr">OCR</router-link> |
+      <router-link to="/draw">Draw</router-link> |
+      <router-link to="/about">About</router-link> |
+    </nav>
+    <router-view/>
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      imageUrl: '',
-      boxes: [],
-      imgNaturalWidth: 1,
-      imgNaturalHeight: 1,
-      scaleX: 1,
-      scaleY: 1
-    }
-  },
-  methods: {
-    uploadImage (event) {
-      const file = event.target.files[0]
-      this.imageUrl = URL.createObjectURL(file)
-      const formData = new FormData()
-      formData.append('image', file)
-      fetch('http://localhost:5000/ocr', {
-        method: 'POST',
-        body: formData
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          this.boxes = data
-        })
-    },
-    onImageLoad () {
-      const img = this.$refs.img
-      this.imgNaturalWidth = img.naturalWidth
-      this.imgNaturalHeight = img.naturalHeight
-      this.scaleX = img.clientWidth / img.naturalWidth
-      this.scaleY = img.clientHeight / img.naturalHeight
-    }
-  }
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-</script>
 
-<style scoped>
-.ocr-container {
-  position: relative;
-  display: inline-block;
+nav {
+  padding: 30px;
 }
-.ocr-box {
-  position: absolute;
-  font-size: 12px;
-  color: red;
-  pointer-events: auto;
-  user-select: text;
-  white-space: nowrap;
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

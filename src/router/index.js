@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ImageOcr from '@/views/ImageOcr.vue'
+import HandWrite from '@/views/HandWrite.vue'
 
 Vue.use(VueRouter)
 
@@ -9,6 +11,16 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/ocr',
+    name: 'ocr',
+    component: ImageOcr
+  },
+  {
+    path: '/draw',
+    name: 'draw',
+    component: HandWrite
   },
   {
     path: '/about',
