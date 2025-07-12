@@ -35,7 +35,6 @@ export default {
   },
   watch: {
     hue_value (newValue) {
-      console.log('change', newValue)
       document.documentElement.style.setProperty('--hue', newValue)
     }
   }

@@ -48,3 +48,27 @@ def ocr():
 ```
 
 Chinese text detection is terrible by the way
+
+## include css file in vue2
+import globale css style in main.js, and place css file in src/assets
+```js
+import './assets/4color.css'
+```
+
+## watch of vue2 to update a css varable
+methods and computed methods need to return value, but watch methods don't
+
+```js
+  watch: {
+    hue_value (newValue) {
+      document.documentElement.style.setProperty('--hue', newValue)
+    }
+  }
+```
+
+computed methods invoke when a dependency element changes
+
+
+### 4color 
+a very interesting idea 
+https://www.iamsajid.com/colors/
