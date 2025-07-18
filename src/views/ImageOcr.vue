@@ -64,7 +64,7 @@ export default {
   .ocr-box {
     position: absolute;
     font-size: 12px;
-    color: red;
+    color: var(--accent-color);
     pointer-events: auto;
     user-select: text;
     white-space: nowrap;
