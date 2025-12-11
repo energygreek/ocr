@@ -48,6 +48,6 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          ocr_gui # Upload the generated binary as a release asset
+          ocr_gui
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
