@@ -1,6 +1,7 @@
 # ocr
 a selectable/copyable OCR tool based on vue and flask
 
+***NEW: add golang version***
 ![ocr](ocr.png)
 ## front setup
 ```sh
@@ -30,6 +31,10 @@ pip install pytesseract, flask, flask-cors
 ```sh
 python main.py
 ```
+or
+./ocr_gui
+
+then open http://localhost:8080 in your browser.
 
 ## detect Chinese text
 
