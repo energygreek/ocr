@@ -1,19 +1,19 @@
-from flask import Flask, send_from_directory, jsonify, request
+from flask import Flask, send_from_directory, jsonify, request, redirect
 import os
 import pytesseract
 from PIL import Image, ImageOps
 from flask_cors import CORS
 
 
-app = Flask(__name__, static_folder='dist', static_url_path='')
-CORS(app, origins=["http://127.0.0.1:5000","http://localhost:5000"])  # Vue dev server default port
+app = Flask(__name__, static_folder='./static/dist', static_url_path='/static')
+CORS(app) # allows all
 
 @app.route('/')
 def index():
-        return send_from_directory(app.static_folder, 'index.html')
+        return redirect('/static')
 
 
-@app.route('/ocr', methods=['POST'])
+@app.route('/api/ocr', methods=['POST'])
 def ocr():
     file = request.files['image']
     img = Image.open(file.stream)
@@ -33,7 +33,7 @@ def ocr():
     return jsonify(results)
 
 
-@app.route('/draw', methods=['POST'])
+@app.route('/api/draw', methods=['POST'])
 def draw():
     file = request.files['image']
     image = Image.open(file).convert('RGB')
@@ -52,5 +52,5 @@ def static_proxy(path):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8080)
 
