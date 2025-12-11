@@ -27,7 +27,7 @@ jobs:
       run: npm run build
 
     - name: Move dist to static
-      run: mv dist static/
+      run: mkdir static && mv dist static/
 
     - name: Set up Go
       uses: actions/setup-go@v4
