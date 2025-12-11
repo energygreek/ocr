@@ -36,7 +36,7 @@ export default {
       this.imageUrl = URL.createObjectURL(file)
       const formData = new FormData()
       formData.append('image', file)
-      fetch('http://localhost:5000/ocr', {
+      fetch('http://localhost:8080/api/ocr', {
         method: 'POST',
         body: formData
       })
